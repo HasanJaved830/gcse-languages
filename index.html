@@ -2,57 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Game Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fake Title to fool teachers looking at your tabs -->
+    <title>GCSE Languages Revision Pod</title>
+    <!-- Standard school favicon to look official -->
+    <link rel="icon" type="image/x-icon" href="bbc.co.uk">
     <style>
-        body {
-            background: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 40px;
-        }
-        h1 {
-            color: #2ecc71;
-            font-size: 2.5rem;
-        }
-        p {
-            color: #aaaaaa;
-            font-size: 1.1rem;
-        }
-        .grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-        .card {
-            background: #1e1e1e;
-            padding: 20px;
-            width: 220px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            text-decoration: none;
-            color: white;
-            transition: 0.2s;
-        }
-        .card:hover {
-            border-color: #2ecc71;
-            transform: translateY(-4px);
-        }
+        :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
+        body, html { font-family: system-ui, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; height: 100%; width: 100%; overflow-x: hidden; }
+        .study-view { padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 600px; width: 100%; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgb(0 0 0 / 0.1); margin-top: 20px; }
+        .flashcard { background: #eff6ff; border: 2px dashed var(--primary); border-radius: 8px; padding: 40px 20px; text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 20px; cursor: pointer; }
+        .btn { display: block; width: 100%; background: var(--primary); color: white; border: none; padding: 12px; font-size: 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        
+        /* Stealth Game Container - Full Screen Overlaid */
+        #gameContainer { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 9999; }
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        /* Hidden triggers designed to look like text notes */
+        .footer-notes { margin-top: 40px; font-size: 11px; color: #cbd5e1; text-align: center; }
+        .stealth-link { color: #cbd5e1; text-decoration: none; cursor: default; }
+        .stealth-link:hover { color: #94a3b8; }
     </style>
 </head>
 <body>
 
-<h1>My Game Portal</h1>
-<p>Select a game to play</p>
+    <!-- VISIBLE STUDY LAYER -->
+    <div class="study-view" id="studyView">
+        <header style="text-align: center;">
+            <h1>GCSE Language Practice Pod</h1>
+            <p>Active language recall and vocabulary tests</p>
+        </header>
 
-<div class="grid">
-    <a class="card" href="Car-Race-master/index.html">Car Race</a>
-    <a class="card" href="retrobowl/index.html">Retro Bowl</a>
-    <a class="card" href="granny3/index.html">Granny 3</a>
-</div>
+        <div class="container">
+            <div class="flashcard" id="card" onclick="flipCard()">Click to Start</div>
+            <button class="btn" onclick="nextCard()">Next Word</button>
+        </div>
 
+        <div class="footer-notes">
+            <p>v2.4.1. Core Vocabulary Databases loaded. 
+               System checks: <span class="stealth-link" onclick="launchGame('retrobowl')">OK</span> 
+               and Modules: <span class="stealth-link" onclick="launchGame('Car Race-master')">Verified</span>.
+            </p>
+        </div>
+    </div>
+
+    <!-- HIDDEN GAME LAYER -->
+    <div id="gameContainer">
+        <iframe id="gameFrame" src=""></iframe>
+    </div>
+
+    <script>
+        // Vocabulary Logic
+        const vocabList = [
+            { foreign: "Bonjour", english: "Hello" },
+            { foreign: "Merci", english: "Thank you" },
+            { foreign: "Au revoir", english: "Goodbye" }
+        ];
+        let currentIndex = 0; let showingForeign = true;
+        function displayCard() {
+            const card = document.getElementById("card");
+            card.textContent = showingForeign ? vocabList[currentIndex].foreign : vocabList[currentIndex].english;
+            card.style.background = showingForeign ? "#eff6ff" : "#fef08a";
+        }
+        function flipCard() { showingForeign = !showingForeign; displayCard(); }
+        function nextCard() { currentIndex = (currentIndex + 1) % vocabList.length; showingForeign = true; displayCard(); }
+        displayCard();
+
+        // Stealth Game Launcher
+        function launchGame(folderName) {
+            const container = document.getElementById("gameContainer");
+            const frame = document.getElementById("gameFrame");
+            
+            // Points to the game folders already in your GitHub repository
+            frame.src = "./" + folderName + "/index.html";
+            container.style.display = "block";
+        }
+
+        // PANIC BUTTON: Press 'Escape' key to instantly hide the game
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const container = document.getElementById("gameContainer");
+                const frame = document.getElementById("gameFrame");
+                container.style.display = "none";
+                frame.src = ""; // Kills game audio immediately
+            }
+        });
+    </script>
 </body>
 </html>
