@@ -4,48 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow, noarchive">
-    <title>My Drive - Google Docs</title>
-    <link rel="icon" type="image/x-icon" href="gstatic.com">
+    <title>My Game Portal</title>
+    <link rel="icon" type="image/x-icon" href="https://gstatic.com">
     <style>
-        body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', Arial, sans-serif; text-align: center; padding-top: 60px; margin: 0; overflow: hidden; }
+        body { background-color: #121212; color: #ffffff; font-family: "Segoe UI", Arial, sans-serif; text-align: center; padding-top: 60px; }
         h1 { color: #2ecc71; font-size: 2.5rem; margin-bottom: 10px; }
         p { color: #aaaaaa; font-size: 1.1rem; }
-        .grid-container { display: flex; justify-content: center; gap: 25px; margin-top: 40px; flex-wrap: wrap; padding: 0 20px; }
-        .card { background: #1e1e1e; border: 1px solid #333333; border-radius: 12px; width: 240px; padding: 25px; cursor: pointer; text-decoration: none; color: #ffffff; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .grid-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; margin-top: 40px; padding: 0 20px; }
+        .card { background: #1e1e1e; border: 1px solid #333333; border-radius: 12px; width: 240px; padding: 25px; cursor: pointer; text-decoration: none; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: space-between; transition: all 0.2s ease; }
         .card:hover { border-color: #2ecc71; transform: translateY(-4px); background: #252525; }
-        iframe { display: none; width: 100vw; height: 100vh; border: none; position: absolute; top: 0; left: 0; z-index: 9999; background: #121212; }
+        .card img { width: 100%; border-radius: 8px; margin-bottom: 15px; aspect-ratio: 1/1; object-fit: cover; }
+        .card span { font-weight: bold; font-size: 1.2rem; }
     </style>
 </head>
 <body>
 
-    <div id="portal-ui">
-        <h1>GCSE Listening Portal & Revision Notes</h1>
-        <p>Select an assignment module below to view course materials.</p>
-        <div class="grid-container">
-            <div class="card" onclick="launchVault()">
-                <h3>Module 1.1 - Oral Practice</h3>
-                <p>Strategic Optimization & Fast Reaction Time Simulation</p>
-            </div>
-        </div>
+    <h1>GCSE Listening Portal & Revision Notes</h1>
+    <p>Select an assignment module below to view course materials.</p>
+
+    <div class="grid-container">
+
+        <!-- CARD 1: Your Original Car Race Game -->
+        <a href="Car-Race-master/Main_menu.html" class="card">
+            <img src="Car-Race-master/temp.jpeg" alt="Car Race Menu Image">
+            <span>Module 1.1 - Custom Car Game</span>
+        </a>
+
+        <!-- CARD 2: Drift Boss -->
+        <a href="retrobowl.school" target="_blank" class="card">
+            <img src="gamedistribution.com" alt="Drift Boss" onerror="this.src='Car-Race-master/temp.jpeg'">
+            <span>Drift Boss</span>
+        </a>
+
+        <!-- CARD 3: Drift Hunters Pro -->
+        <a href="retrobowl.school" target="_blank" class="card">
+            <img src="crazygames.com" alt="Drift Hunters Pro" onerror="this.src='Car-Race-master/temp.jpeg'">
+            <span>Drift Hunters Pro</span>
+        </a>
+
     </div>
 
-    <!-- Hidden portal window loading the massive unblocked multi-game catalog -->
-    <iframe id="game-vault" src="https://3kh0.github.io"></iframe>
-
-    <script>
-        window.history.replaceState(null, "Google Workspace", "/assigned-tasks/view-folders");
-
-        function launchVault() {
-            document.getElementById('portal-ui').style.display = 'none';
-            document.getElementById('game-vault').style.display = 'block';
-        }
-
-        // Panic Button: Tap the 'Escape' key to instantly drop to Google Classroom
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                window.location.replace('google.com');
-            }
-        });
-    </script>
 </body>
 </html>
