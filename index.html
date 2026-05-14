@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>My Drive - Google Docs</title>
+    <link rel="icon" type="image/x-icon" href="gstatic.com">
+    <style>
+        body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', Arial, sans-serif; text-align: center; padding-top: 60px; margin: 0; }
+        h1 { color: #2ecc71; font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #aaaaaa; font-size: 1.1rem; }
+        .grid-container { display: flex; justify-content: center; gap: 25px; margin-top: 40px; flex-wrap: wrap; padding: 0 20px; }
+        .card { background: #1e1e1e; border: 1px solid #333333; border-radius: 12px; width: 240px; padding: 25px; cursor: pointer; text-decoration: none; color: #ffffff; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .card:hover { border-color: #2ecc71; transform: translateY(-4px); background: #252525; }
+        .card h3 { margin: 0 0 10px 0; color: #ffffff; font-size: 1.4rem; }
+        .card p { font-size: 0.9rem; color: #777777; margin: 0; }
+    </style>
+</head>
+<body>
+    <h1>GCSE Listening Portal & Revision Notes</h1>
+    <p>Select an assignment module below to view course materials.</p>
+    <div class="grid-container">
+        <a href="./retrobowl/index.html" class="card">
+            <h3>Module 1.1 - Oral Practice</h3>
+            <p>Strategic Optimization & Fast Reaction Time Simulation</p>
+        </a>
+    </div>
+    <script>
+        window.history.replaceState(null, "Google Workspace", "/assigned-tasks/view-folders");
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                window.location.replace('google.com');
+            }
+        });
+    </script>
+</body>
+</html>
